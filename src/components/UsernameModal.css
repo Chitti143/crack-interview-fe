@@ -1,0 +1,215 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+}
+
+.modal-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── Logo ── */
+.modal-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.modal-logo-icon {
+    font-size: 28px;
+    color: var(--accent-blue);
+}
+
+.modal-logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.modal-logo-highlight {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Text ── */
+.modal-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+/* ── Form ── */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.modal-input-group {
+    display: flex;
+    align-items: center;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-input-group:focus-within {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.modal-at {
+    padding: 14px 0 14px 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    user-select: none;
+}
+
+.modal-input {
+    flex: 1;
+    padding: 14px 16px 14px 4px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    font-family: inherit;
+    outline: none;
+}
+
+.modal-input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.modal-input-error {
+    border-color: #ef4444 !important;
+}
+
+/* ── Preview ── */
+.modal-preview {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+.modal-preview strong {
+    color: var(--accent-blue);
+}
+
+/* ── Error ── */
+.modal-error {
+    font-size: 14px;
+    color: #ef4444;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* ── Submit ── */
+.modal-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 4px;
+}
+
+.modal-submit:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.modal-submit:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ── Features ── */
+.modal-features {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.modal-feature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.modal-feature-icon {
+    color: #22c55e;
+    font-size: 14px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+    .modal-card {
+        padding: 28px 20px;
+    }
+
+    .modal-title {
+        font-size: 24px;
+    }
+
+    .modal-input {
+        font-size: 16px;
+    }
+}

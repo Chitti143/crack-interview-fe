@@ -1,0 +1,170 @@
+[
+    {
+        "id": "react",
+        "name": "React.js",
+        "icon": "⚛️",
+        "questionCount": 120,
+        "color": "#61DAFB"
+    },
+    {
+        "id": "javascript",
+        "name": "JavaScript",
+        "icon": "🟨",
+        "questionCount": 258,
+        "color": "#F7DF1E"
+    },
+    {
+        "id": "python",
+        "name": "Python",
+        "icon": "🐍",
+        "questionCount": 95,
+        "color": "#3776AB"
+    },
+    {
+        "id": "java",
+        "name": "Java",
+        "icon": "☕",
+        "questionCount": 150,
+        "color": "#ED8B00"
+    },
+    {
+        "id": "sql",
+        "name": "SQL",
+        "icon": "🗄️",
+        "questionCount": 112,
+        "color": "#336791"
+    },
+    {
+        "id": "nodejs",
+        "name": "Node.js",
+        "icon": "🟩",
+        "questionCount": 132,
+        "color": "#339933"
+    },
+    {
+        "id": "angular",
+        "name": "Angular",
+        "icon": "🅰️",
+        "questionCount": 110,
+        "color": "#DD0031"
+    },
+    {
+        "id": "typescript",
+        "name": "TypeScript",
+        "icon": "🔷",
+        "questionCount": 79,
+        "color": "#3178C6"
+    },
+    {
+        "id": "csharp",
+        "name": "C# / .NET",
+        "icon": "🟪",
+        "questionCount": 80,
+        "color": "#512BD4"
+    },
+    {
+        "id": "aws",
+        "name": "AWS",
+        "icon": "☁️",
+        "questionCount": 70,
+        "color": "#FF9900"
+    },
+    {
+        "id": "docker",
+        "name": "Docker",
+        "icon": "🐳",
+        "questionCount": 40,
+        "color": "#2496ED"
+    },
+    {
+        "id": "system-design",
+        "name": "System Design",
+        "icon": "📐",
+        "questionCount": 55,
+        "color": "#E91E63"
+    },
+    {
+        "id": "mongodb",
+        "name": "MongoDB",
+        "icon": "🍃",
+        "questionCount": 57,
+        "color": "#47A248"
+    },
+    {
+        "id": "git",
+        "name": "Git",
+        "icon": "🔀",
+        "questionCount": 36,
+        "color": "#F05032"
+    },
+    {
+        "id": "html-css",
+        "name": "HTML / CSS",
+        "icon": "🎨",
+        "questionCount": 70,
+        "color": "#E34F26"
+    },
+    {
+        "id": "ai-ml",
+        "name": "AI / ML",
+        "icon": "🤖",
+        "questionCount": 50,
+        "color": "#9C27B0"
+    },
+    {
+        "id": "rxjs",
+        "name": "RxJS",
+        "icon": "🔮",
+        "questionCount": 18,
+        "color": "#B7178C"
+    },
+    {
+        "id": "ngrx",
+        "name": "NgRx",
+        "icon": "📦",
+        "questionCount": 8,
+        "color": "#BA2BD2"
+    },
+    {
+        "id": "expressjs",
+        "name": "Express.js",
+        "icon": "⚡",
+        "questionCount": 8,
+        "color": "#353535"
+    },
+    {
+        "id": "jwt-auth",
+        "name": "JWT / Auth",
+        "icon": "🔐",
+        "questionCount": 7,
+        "color": "#000080"
+    },
+    {
+        "id": "css-scss",
+        "name": "CSS / SCSS",
+        "icon": "💅",
+        "questionCount": 5,
+        "color": "#CF649A"
+    },
+    {
+        "id": "cicd",
+        "name": "CI / CD",
+        "icon": "🔄",
+        "questionCount": 2,
+        "color": "#4CAF50"
+    },
+    {
+        "id": "websockets",
+        "name": "WebSockets / SSE",
+        "icon": "🌐",
+        "questionCount": 2,
+        "color": "#FF6600"
+    },
+    {
+        "id": "redis",
+        "name": "Redis",
+        "icon": "🔴",
+        "questionCount": 1,
+        "color": "#DC382D"
+    }
+]
