@@ -1,15 +1,10 @@
+import { Link } from 'react-router-dom';
 import { FiMessageCircle, FiThumbsUp, FiEye, FiClock } from 'react-icons/fi';
 import CompanyBadge from './CompanyBadge';
-import answers from '../data/answers.json';
 import './QuestionCard.css';
 
 function QuestionCard({ question, onClick }) {
-    // Get the top answer's like count for this question
-    const questionAnswers = answers
-        .filter(a => a.questionId === question.id)
-        .sort((a, b) => b.likes - a.likes);
-
-    const totalVotes = questionAnswers.reduce((sum, a) => sum + a.likes, 0);
+    const totalVotes = question.totalVotes || 0;
 
     const timeAgo = (dateStr) => {
         const days = Math.floor((new Date() - new Date(dateStr)) / (1000 * 60 * 60 * 24));
@@ -30,14 +25,12 @@ function QuestionCard({ question, onClick }) {
 
     return (
         <div className="question-card" onClick={onClick}>
-            {/* Left: Vote Count */}
             <div className="qc-votes">
                 <FiThumbsUp className="qc-votes-icon" />
                 <span className="qc-votes-count">{totalVotes}</span>
                 <span className="qc-votes-label">votes</span>
             </div>
 
-            {/* Right: Content */}
             <div className="qc-content">
                 <div className="qc-top-row">
                     <span
@@ -54,18 +47,16 @@ function QuestionCard({ question, onClick }) {
 
                 <h3 className="qc-title">{question.title}</h3>
 
-                {/* Company Badges */}
                 <div className="qc-companies">
                     {question.companies.map((company) => (
                         <CompanyBadge key={company} company={company} />
                     ))}
                 </div>
 
-                {/* Stats Row */}
                 <div className="qc-stats">
                     <span className="qc-stat">
                         <FiMessageCircle />
-                        {question.answerCount} answers
+                        {question.answerCount || 0} answers
                     </span>
                     <span className="qc-stat">
                         <FiEye />
@@ -78,9 +69,13 @@ function QuestionCard({ question, onClick }) {
                         <FiClock />
                         {timeAgo(question.createdAt)}
                     </span>
-                    <span className="qc-stat qc-author">
+                    <Link
+                        to={`/profile/${question.postedBy}`}
+                        className="qc-stat qc-author"
+                        onClick={(e) => e.stopPropagation()}
+                    >
                         by @{question.postedBy}
-                    </span>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiSearch, FiUser, FiZap, FiLogOut } from 'react-icons/fi';
 import { useUser } from '../context/UserContext';
+import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
 function Header() {
@@ -29,7 +30,8 @@ function Header() {
                 </div>
 
                 <div className="header-actions">
-                    <Link to="/ask" className="btn-ask">+ Post Question</Link>
+                    <ThemeToggle />
+                    <Link to="/ask" className="btn-ask">+ Ask Question</Link>
                     {username && (
                         <>
                             <Link to={`/profile/${username}`} className="user-badge">

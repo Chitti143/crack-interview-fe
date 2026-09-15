@@ -1,0 +1,71 @@
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-track {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-track.dark {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.toggle-track.light {
+    background: #e0e7ff;
+    border: 1px solid #c7d2fe;
+}
+
+.toggle-icon {
+    font-size: 14px;
+    z-index: 1;
+    transition: color 0.3s;
+}
+
+.toggle-track.dark .sun {
+    color: var(--text-muted);
+}
+
+.toggle-track.dark .moon {
+    color: #facc15;
+}
+
+.toggle-track.light .sun {
+    color: #f59e0b;
+}
+
+.toggle-track.light .moon {
+    color: #a5b4fc;
+}
+
+.toggle-thumb {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    top: 2px;
+    transition: left 0.3s ease, background 0.3s ease;
+}
+
+.toggle-track.dark .toggle-thumb {
+    left: 27px;
+    background: var(--accent-blue);
+}
+
+.toggle-track.light .toggle-thumb {
+    left: 2px;
+    background: #f59e0b;
+}

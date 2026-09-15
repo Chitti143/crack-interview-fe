@@ -1,49 +1,48 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { FiArrowLeft, FiFilter, FiPlus } from 'react-icons/fi';
 import QuestionCard from '../components/QuestionCard';
-import technologies from '../data/technologies.json';
-import questions from '../data/questions.json';
-import answers from '../data/answers.json';
+import Loader from '../components/Loader';
+import ErrorMessage from '../components/ErrorMessage';
+import { getTechnologies, getQuestionsByTech } from '../services/api';
 import './QuestionsPage.css';
 
 function QuestionsPage() {
     const { techId } = useParams();
     const navigate = useNavigate();
+    const [tech, setTech] = useState(null);
+    const [questions, setQuestions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [sortBy, setSortBy] = useState('votes');
     const [diffFilter, setDiffFilter] = useState('all');
 
-    const tech = technologies.find((t) => t.id === techId);
-
-    const filteredQuestions = useMemo(() => {
-        let qs = questions.filter((q) => q.techId === techId);
-
-        // Filter by difficulty
-        if (diffFilter !== 'all') {
-            qs = qs.filter((q) => q.difficulty === diffFilter);
-        }
-
-        // Sort
-        if (sortBy === 'votes') {
-            qs = [...qs].sort((a, b) => {
-                const aVotes = answers
-                    .filter((ans) => ans.questionId === a.id)
-                    .reduce((sum, ans) => sum + ans.likes, 0);
-                const bVotes = answers
-                    .filter((ans) => ans.questionId === b.id)
-                    .reduce((sum, ans) => sum + ans.likes, 0);
-                return bVotes - aVotes;
+    const fetchData = () => {
+        setLoading(true);
+        setError(null);
+        Promise.all([
+            getTechnologies(),
+            getQuestionsByTech(techId, sortBy, diffFilter)
+        ])
+            .then(([techs, result]) => {
+                setTech(techs.find(t => t.id === techId) || null);
+                setQuestions(result.data || []);
+                setLoading(false);
+            })
+            .catch(() => {
+                setError('Failed to load questions');
+                setLoading(false);
             });
-        } else if (sortBy === 'newest') {
-            qs = [...qs].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        } else if (sortBy === 'views') {
-            qs = [...qs].sort((a, b) => b.views - a.views);
-        } else if (sortBy === 'unanswered') {
-            qs = qs.filter((q) => q.answerCount === 0);
-        }
+    };
 
-        return qs;
+    useEffect(() => {
+        fetchData();
     }, [techId, sortBy, diffFilter]);
+
+    const totalAnswers = questions.reduce((sum, q) => sum + (q.answerCount || 0), 0);
+
+    if (loading) return <main className="questions-page"><Loader text="Loading questions..." /></main>;
+    if (error) return <main className="questions-page"><ErrorMessage message={error} onRetry={fetchData} /></main>;
 
     if (!tech) {
         return (
@@ -56,11 +55,8 @@ function QuestionsPage() {
         );
     }
 
-    const totalAnswers = filteredQuestions.reduce((sum, q) => sum + q.answerCount, 0);
-
     return (
         <main className="questions-page">
-            {/* Breadcrumb + Back */}
             <div className="qp-breadcrumb">
                 <Link to="/" className="qp-back-link">
                     <FiArrowLeft /> Home
@@ -69,23 +65,21 @@ function QuestionsPage() {
                 <span className="qp-breadcrumb-current">{tech.name}</span>
             </div>
 
-            {/* Page Header */}
             <div className="qp-header">
                 <div className="qp-header-left">
                     <div className="qp-tech-icon">{tech.icon}</div>
                     <div>
                         <h1 className="qp-title">{tech.name} Interview Questions</h1>
                         <p className="qp-subtitle">
-                            {filteredQuestions.length} questions • {totalAnswers} answers
+                            {questions.length} questions • {totalAnswers} answers
                         </p>
                     </div>
                 </div>
-                <button className="qp-ask-btn">
+                <Link to="/ask" className="qp-ask-btn">
                     <FiPlus /> Ask a Question
-                </button>
+                </Link>
             </div>
 
-            {/* Filters Bar */}
             <div className="qp-filters">
                 <div className="qp-sort-tabs">
                     {[
@@ -123,10 +117,9 @@ function QuestionsPage() {
                 </div>
             </div>
 
-            {/* Questions List */}
             <div className="qp-list">
-                {filteredQuestions.length > 0 ? (
-                    filteredQuestions.map((q) => (
+                {questions.length > 0 ? (
+                    questions.map((q) => (
                         <QuestionCard
                             key={q.id}
                             question={q}
